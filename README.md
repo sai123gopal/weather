@@ -10,7 +10,7 @@ The app also includes a feature that automatically detects the user's location a
 
 In summary, this simple weather app for Android is a reliable and convenient tool that provides accurate weather information for 406 cities in India. With its user-friendly interface and hourly forecast updates, it's the perfect companion for anyone who wants to stay informed about the weather in their area or when traveling to other cities in India.
 
-### To run this project please your API key in MainActivity.java file.
+## To run this project please palce your API key in MainActivity.java file.
 
 ## Download APK :
 
