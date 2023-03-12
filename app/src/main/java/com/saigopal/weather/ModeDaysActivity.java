@@ -27,7 +27,7 @@ public class ModeDaysActivity extends AppCompatActivity {
 
     double lat = 0.0;
     double lon = 0.0;
-    String appId = "Place your API Key here";
+    String appId = MainActivity.appId;
     List<HourlyForecastResponse.ThreeHourForecastWeather> list = new ArrayList<>();
 
     MoreDaysListAdapter moreDaysListAdapter;

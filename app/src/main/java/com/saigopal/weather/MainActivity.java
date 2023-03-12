@@ -41,11 +41,13 @@ public class MainActivity extends AppCompatActivity {
     ApiInterface apiInterface;
     double lat = 0.0;
     double lon = 0.0;
-    String appId = "Place your API Key here";
+    public static final  String appId = "API here";
 
     String selectedLocation = "";
 
     Dialog dialog;
+
+    android.location.LocationListener locationListener;
 
 
     @Override
@@ -79,6 +81,19 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "No internet connection", Toast.LENGTH_SHORT).show();
         }
 
+        locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(@NonNull Location location) {
+                lat = location.getLatitude();
+                lon = location.getLongitude();
+
+                PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit().putString("lon", String.valueOf(lon)).apply();
+                PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit().putString("lat", String.valueOf(lat)).apply();
+
+                getCurrentData(true);
+                getHourlyData();
+            }
+        };
 
 
         binding.idLocationChange.setOnClickListener(view -> startActivity(new Intent(this,LocationChoseActivity.class)));
@@ -163,8 +178,7 @@ public class MainActivity extends AppCompatActivity {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getLocation();
             } else {
-                Toast.makeText(this, "Please provide location PERMISSION", Toast.LENGTH_SHORT)
-                        .show();
+                Toast.makeText(this, "Please provide location PERMISSION", Toast.LENGTH_SHORT).show();
             }
         } else {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -192,7 +206,9 @@ public class MainActivity extends AppCompatActivity {
                 getHourlyData();
 
             }else {
-                Toast.makeText(this, "Please turn on your location and come back", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                Toast.makeText(this, "Please turn on your location and come back later", Toast.LENGTH_LONG).show();
+                finish();
             }
         }
     }
