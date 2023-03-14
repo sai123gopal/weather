@@ -30,6 +30,8 @@
                 android:orientation="vertical"
                 android:background="@drawable/weather_bg"
                 android:layout_width="match_parent"
+                android:id="@+id/idBigBackground"
+                android:transitionName="card"
                 android:gravity="center_horizontal"
                 android:layout_height="wrap_content">
 
@@ -65,6 +67,8 @@
                 <ImageView
                     android:scaleType="fitCenter"
                     tools:src="@drawable/clear"
+                    android:id="@+id/image"
+                    android:transitionName="image"
                     android:layout_marginTop="20dp"
                     app:setWeatherImage="@{model.weather.get(0).main}"
                     android:layout_width="match_parent"
@@ -111,6 +115,8 @@
                     android:layout_marginHorizontal="50dp"
                     android:layout_marginBottom="20dp"
                     android:orientation="horizontal"
+                    android:id="@+id/layout"
+                    android:transitionName="layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 

@@ -25,6 +25,7 @@
                 android:background="@drawable/weather_bg"
                 android:layout_width="match_parent"
                 android:gravity="center_horizontal"
+                android:transitionName="card"
                 android:layout_height="wrap_content">
 
                 <LinearLayout
@@ -59,6 +60,7 @@
                         android:scaleType="fitCenter"
                         tools:src="@drawable/clear"
                         android:layout_gravity="center"
+                        android:transitionName="image"
                         android:layout_weight="1"
                         app:setWeatherImage="@{model.list.get(0).weather.get(0).main}"
                         android:layout_width="0dp"
@@ -72,6 +74,7 @@
                         android:layout_height="match_parent">
                         <TextView
                             android:id="@+id/idTempText"
+                            android:transitionName="tempText"
                             android:layout_width="wrap_content"
                             tools:text="21\u00b0"
                             android:textStyle="bold"
@@ -100,6 +103,7 @@
                     android:layout_marginBottom="20dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
+                    android:transitionName="layout"
                     android:layout_height="wrap_content">
 
                     <LinearLayout

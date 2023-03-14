@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
 
+import android.app.ActivityOptions;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     ApiInterface apiInterface;
     double lat = 0.0;
     double lon = 0.0;
-    public static final  String appId = "API here";
+    public static final  String appId = "APIKey";
 
     String selectedLocation = "";
 
@@ -98,7 +100,17 @@ public class MainActivity extends AppCompatActivity {
 
         binding.idLocationChange.setOnClickListener(view -> startActivity(new Intent(this,LocationChoseActivity.class)));
 
-        binding.idMore.setOnClickListener(v -> startActivity(new Intent(this,ModeDaysActivity.class)));
+        binding.idMore.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ModeDaysActivity.class);
+            ActivityOptions options = ActivityOptions
+                    .makeSceneTransitionAnimation(this,
+                            Pair.create(binding.idBigBackground, "card"),
+                            Pair.create(binding.layout,"layout"),
+                            Pair.create(binding.image, "image"));
+
+            startActivity(intent, options.toBundle());
+
+        });
 
     }
 
